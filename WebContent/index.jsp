@@ -1,5 +1,6 @@
 <%@ page contentType ="text/html; charset=utf-8" %>
 <%@ page import="java.sql.*"%>
+<%@ page errorPage="error.jsp" %>
 
 <!DOCTYPE html>
 <html lang="en">

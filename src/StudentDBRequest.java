@@ -71,7 +71,7 @@ public class StudentDBRequest extends HttpServlet {
 			request.setAttribute("rs", rs);
 			
 			
-			RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/student_administration.jsp");
+			RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/view/student_administration.jsp");
 			requestDispatcher.forward(request, response);
 			
 			stat.close();

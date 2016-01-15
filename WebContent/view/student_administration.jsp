@@ -59,7 +59,7 @@
         </button>
         <br>
 <%
-	int total_student = Integer.parseInt((String)request.getAttribute("total_student"));
+	int total_student = (int)request.getAttribute("total_student");
   	out.print("총 학생수 : "+ total_student);
 %>
         <table class="table table-striped">
@@ -108,12 +108,12 @@
   		} //while
   	}//if total_student else
   		
-  	int last_idx = Integer.parseInt((String)request.getAttribute("last_idx"));
+  	int last_idx = (int)request.getAttribute("last_idx");
 %>
           </tbody>
         </table>
         </div>
-        <a href="student_add.jsp?s_id=<%= last_idx %>"><button type="button" class="btn btn-default">Add</button></a>
+        <a href="student/add"><button type="button" class="btn btn-default">Add</button></a>
       </div>
 
 

@@ -12,7 +12,7 @@
 		    </div>
 		      <div class="collapse navbar-collapse" id="menu-navbar">
 		        <ul class="nav navbar-nav">
-		          <li><a href="student">Student Administration</a></li>
+		          <li><a href="/Project/student">Student Administration</a></li>
 		          <li><a href="asset_administration.jsp">Asset Administration</a></li>
 		          <li><a href="announcement.jsp">Announcement</a><li>
 		          <li><a href="references.jsp">References</a></li>
@@ -29,8 +29,8 @@
 		
 		        </ul>
 		        <ul class="nav navbar-nav navbar-right">
-		          <li><a href="index.jsp"><span class="glyphicon glyphicon-home"></span>Home</a></li>
-		          <li><a href="logout.jsp"><span class="glyphicon glyphicon-log-out"></span>Sign Out</a></li>
+		          <li><a href="/Project"><span class="glyphicon glyphicon-home"></span>Home</a></li>
+		          <li><a href="/Project/logout.jsp"><span class="glyphicon glyphicon-log-out"></span>Sign Out</a></li>
 		        </ul>
 		      </div>
 		  </div>

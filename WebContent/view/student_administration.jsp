@@ -1,4 +1,4 @@
-<%@page contentType="text/html; charset=utf-8" errorPage="error.jsp" %>
+<%@page contentType="text/html; charset=utf-8" errorPage="/error.jsp" %>
 <%@page import="java.sql.*"%>
 
 <html lang="en">
@@ -58,10 +58,8 @@
           <span class="glyphicon glyphicon-print"></span> Print
         </button>
         <br>
-<%
-	int total_student = (int)request.getAttribute("total_student");
-  	out.print("총 학생수 : "+ total_student);
-%>
+
+		<p>총 학생 수: ${requestScope.total_student }</p>
         <table class="table table-striped">
           <thead>
             <tr>
@@ -77,7 +75,7 @@
           <tbody>
 <%
 	ResultSet rs = (ResultSet)request.getAttribute("rs");
-  	if(total_student == 0){
+  	if((int)request.getAttribute("total_student") == 0){
 %>
             <tr>
               <td colspan="7">학생 정보가 존재하지 않습니다.</td>
@@ -101,8 +99,8 @@
               <td><%=e_mail%></td>
               <td><%=location%></td>
 
-              <td><button type="button" class="btn btn-primary btn-xs btn-lg" onclick="location.href='student_modify.jsp?idx=<%=idx%>'">Modify</button>&nbsp;&nbsp;&nbsp;
-              <button type="button" class="btn btn-primary btn-xs btn-lg" onclick="location.href='stu_db_delete.jsp?idx=<%=idx%>'">Delete</button></td>
+              <td><button type="button" class="btn btn-primary btn-xs btn-lg" onclick="location.href='view/student_modify.jsp?idx=<%=idx%>'">Modify</button>&nbsp;&nbsp;&nbsp;
+              <button type="button" class="btn btn-primary btn-xs btn-lg" onclick="location.href='view/stu_db_delete.jsp?idx=<%=idx%>'">Delete</button></td>
             </tr>
 <%
   		} //while

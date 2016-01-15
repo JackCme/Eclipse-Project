@@ -1,4 +1,4 @@
-<%@ page contentType ="text/html; charset=utf-8" errorPage="error.jsp"%>
+<%@ page contentType ="text/html; charset=utf-8" errorPage="/error.jsp"%>
 
 		<nav class="navbar navbar-inverse">
 		  <div class="container-fluid">

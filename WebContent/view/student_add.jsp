@@ -1,4 +1,4 @@
-<%@page contentType="text/html; charset=utf-8"%>
+<%@page contentType="text/html; charset=utf-8" errorPage="/error.jsp"%>
 <%@page import="java.sql.*"%>
 
 <%

@@ -1,4 +1,4 @@
-<%@ page contentType ="text/html; charset=utf-8" %>
+<%@ page contentType ="text/html; charset=utf-8" errorPage="error.jsp"%>
 
 		<nav class="navbar navbar-inverse">
 		  <div class="container-fluid">
@@ -12,7 +12,7 @@
 		    </div>
 		      <div class="collapse navbar-collapse" id="menu-navbar">
 		        <ul class="nav navbar-nav">
-		          <li><a href="student_administration.jsp">Student Administration</a></li>
+		          <li><a href="student">Student Administration</a></li>
 		          <li><a href="asset_administration.jsp">Asset Administration</a></li>
 		          <li><a href="announcement.jsp">Announcement</a><li>
 		          <li><a href="references.jsp">References</a></li>

@@ -129,6 +129,7 @@
 			if(!login) {
 			  response.sendRedirect("login.jsp");
 			}
+			else {
 		%>
 		
 		<jsp:include page="/view/nav.jsp" flush="false" />
@@ -160,6 +161,8 @@
 		    <pre id="output"></pre>
 		  </div>
 		</div>
+		
+		<% } %>
 	</body>
 </html>
 

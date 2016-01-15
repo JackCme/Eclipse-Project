@@ -103,7 +103,7 @@ public class LoginCheck extends HttpServlet {
 		}
 
 		if(check){
-			response.sendRedirect("index.jsp");
+			response.sendRedirect("/Project");
 		}
 		else{
 			PrintWriter out = response.getWriter();

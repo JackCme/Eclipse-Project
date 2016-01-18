@@ -1,11 +1,10 @@
 <%@page contentType="text/html; charset=utf-8" errorPage="/error.jsp"%>
 <%@page import="java.sql.*"%>
 
-
-
 <%
   request.setCharacterEncoding("utf-8");
   response.setContentType("utf-8");
+  
 String db_url="jdbc:mysql://dbinstance.cmpfvsw5d4kz.ap-northeast-1.rds.amazonaws.com:3306/test";
 String db_user="admin";
 String db_pwd="dbadministrator";
@@ -40,7 +39,7 @@ if(rs.next())
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Student Information Modify Window</title>
+  <title>Student deletion confirm</title>
   <link rel="stylesheet" href="css/style.css" title="style1">
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" title="style1">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -74,10 +73,13 @@ if(!login) {
         User level: ${level}<br>
     </div>
 
-    <h2>Modify Student Information</h2>
-    <p>
-    <form method="post" action="/Project/student?idx=<%=idx%>">
-    	<input type="hidden" name="mode" value="modify" />
+    <h2>Delete Student Information</h2>
+    <p class="alert alert-danger">
+    	<strong>Are you sure to delete?</strong> Deletion of data cannot be undone.
+    </p>
+    <form method="post" action="/Project/student?idx=<%=idx%>" >
+	    <div class="form" >
+	    	<input type="hidden" name="mode" value="delete" />
       <table class="table table-bordered small">
         <!-- <tr>
           <th class="success">No.</th>
@@ -86,57 +88,41 @@ if(!login) {
         <tr>
           <th class="success">Name</th>
           <td>
-            <input class="form-control" type="text" name="name" value="<%=name%>">
+            <label ><%=name%></label>
           </td>
         </tr>
         <tr>
           <th class="success">Gender</th>
           <td>
-<%
-  if(gender.equals("M"))
-  {
-%>
-            <input class="radio-inline" type="radio" name="gender" value="M" checked>M
-            <input class="radio-inline" type="radio" name="gender" value="F">F
-<%
-  }else{
-%>
-            <input class="radio-inline" type="radio" name="gender" value="M">M
-            <input class="radio-inline" type="radio" name="gender" value="F" checked>F
-<%
-  }
-%>
+            <label ><%=gender%></label>
           </td>
         </tr>
         <tr>
           <th class="success">Address</th>
           <td>
-            <input class="form-control" type="text" name="address" value="<%=address%>">
+            <label ><%=address%></label>
           </td>
         </tr>
         <tr>
           <th class="success">E-mail</th>
           <td>
-            <input class="form-control" type="text" name="e_mail" value="<%=e_mail%>">
+            <label  ><%=e_mail%></label>
           </td>
         </tr>
         <tr>
           <th class="success">Location</th>
            <td>
-            <select  name="location" class="form-control">
-              <option <%if(location.equals("Location 1")){out.print("selected");}%>>Location 1</option>
-              <option <%if(location.equals("Location 2")){out.print("selected");}%>="location 2">Location 2</option>
-              <option <%if(location.equals("Location 3")){out.print("selected");}%>="location 3">Location 3</option>
-              <option <%if(location.equals("Location 4")){out.print("selected");}%>="location 4">Location 4</option>
-            </select>
+            <label  ><%=location%></label>
           </td>
         </tr>
       </table>
-    </p>
-      <input type="submit" class="btn btn-default" value="Save">
-      <input type="reset" class="btn btn-default" value="Reset">
+    
+      <input type="submit" class="btn btn-success" value="Delete">
       <button type="button" onclick="history.back();" class="btn btn-danger">Back</button>
+	    </div>
+   		
     </form>
+  
   </div>
 </body>
 <%

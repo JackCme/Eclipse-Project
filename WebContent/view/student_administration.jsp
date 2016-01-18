@@ -15,8 +15,9 @@
   <body>
 
 <!-- Navigation 시작 -->
-
+		
 		<%
+			//Session timeout
 			String memberId = (String)session.getAttribute("id");
 			
 			boolean login = (memberId == null) ? false : true;
@@ -37,6 +38,8 @@
           Name: ${name}<br>
           User level: ${level}<br>
         </div>
+
+        
         <div id="print_table">
           <h2>Student Information</h2>
         <button type = "button" class = "btn btn-default" title = "Search" data-container = "body"
@@ -59,8 +62,9 @@
         </button>
         <br>
 
-		<p>총 학생 수: ${requestScope.total_student }</p>
-        <table class="table table-striped">
+		<p>총 학생 수: ${total_student }</p>
+		<div class="table-responsive">
+			<table class="table table-striped table-hover">
           <thead>
             <tr>
               <th>Student ID</th>
@@ -100,7 +104,7 @@
               <td><%=location%></td>
 
               <td><button type="button" class="btn btn-primary btn-xs btn-lg" onclick="location.href='view/student_modify.jsp?idx=<%=idx%>'">Modify</button>&nbsp;&nbsp;&nbsp;
-              <button type="button" class="btn btn-primary btn-xs btn-lg" onclick="location.href='view/stu_db_delete.jsp?idx=<%=idx%>'">Delete</button></td>
+              <button type="button" class="btn btn-primary btn-xs btn-lg" onclick="location.href='view/student_delete.jsp?idx=<%=idx%>'">Delete</button></td>
             </tr>
 <%
   		} //while
@@ -110,8 +114,10 @@
 %>
           </tbody>
         </table>
+		</div>
+        
         </div>
-        <a href="student/add"><button type="button" class="btn btn-default">Add</button></a>
+        <a href="/Project/view/student_add.jsp"><button type="button" class="btn btn-default">Add</button></a>
       </div>
 
 

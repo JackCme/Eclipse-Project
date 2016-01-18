@@ -22,6 +22,7 @@
   <div id="title">
     <!-- title ?? -->
   </div>
+    <!-- Navigation 시작 -->
   		<%
 			//Session Timeout
 			String memberId = (String)session.getAttribute("id");
@@ -32,7 +33,7 @@
 			}
 			else {
 		%>
-	<!-- Navigation 시작 -->
+	
 		<jsp:include page="/view/nav.jsp" flush="false" />
     <!-- Navigation 끝 -->
 
@@ -45,7 +46,7 @@
 
     <h2>Add Student Information</h2>
     <p>
-    <form method="post" action="/Project/StudentDB">
+    <form method="post" action="/Project/student">
 		<input type="hidden" name="mode" value="add" />
       <table class="table table-bordered small">
         <tr>

@@ -3,6 +3,7 @@
 import java.io.IOException;
 import java.sql.*;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,10 +13,10 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class StudentDBAdd
  */
-@WebServlet("/StudentDB")
+@WebServlet("/student")
 public class StudentDB extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -30,6 +31,23 @@ public class StudentDB extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("utf-8");
+		
+		Student student = new Student();
+		
+		ResultSet rs = student.studentList();
+
+		if(rs != null) {
+	
+			request.setAttribute("rs", rs);
+			request.setAttribute("total_student", student.getTotalStudent());
+			request.setAttribute("last_idx", student.getLastIdx());
+		}
+			
+		
+		RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/view/student_administration.jsp");
+		requestDispatcher.forward(request, response);
 	}
 
 	/**
@@ -70,8 +88,10 @@ public class StudentDB extends HttpServlet {
 					int rowNum = stat.executeUpdate(query);
 					if(rowNum <1)
 						throw new Exception("DB 데이터를 수정하는데 실패하였습니다.");
-					else
+					else {						
 						response.sendRedirect("/Project/student");
+					}
+						
 				} catch(SQLException e) {
 					e.printStackTrace();
 				}
@@ -91,6 +111,21 @@ public class StudentDB extends HttpServlet {
 				}
 				
 			} // if modify
+			
+			if (mode.equals("delete")) {
+				String query = String.format("DELETE from student where s_no=%s;",idx);
+				try{
+					int rowNum = stat.executeUpdate(query);
+
+					if(rowNum <1)
+						throw new Exception("DB 데이터를 수정하는 데 실패하였습니다.");
+					else
+						response.sendRedirect("/Project/student");
+				} catch(SQLException e) {
+					e.printStackTrace();
+				}
+				
+			} // if delete
 			
 		}catch(Exception e)	{ 
 			e.printStackTrace();

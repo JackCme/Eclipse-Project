@@ -1,14 +1,7 @@
 <%@page contentType="text/html; charset=utf-8" errorPage="/error.jsp"%>
 <%@page import="java.sql.*"%>
 
-<!--session timeout-->
-<%
-String memberId = (String)session.getAttribute("id");
-boolean login = memberId == null ? false : true;
-if(!login) {
-  response.sendRedirect("login.jsp");
-}
-%>
+
 
 <%
   request.setCharacterEncoding("utf-8");
@@ -57,45 +50,18 @@ if(rs.next())
   <div id="title">
     <!-- title ?? -->
   </div>
+  
+  <!--session timeout-->
+<%
+String memberId = (String)session.getAttribute("id");
+boolean login = memberId == null ? false : true;
+if(!login) {
+  response.sendRedirect("login.jsp");
+}
+%>
+  
   <!-- Navigation 시작 -->
-
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menu-navbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-        <a class="navbar-brand" href="#">Menu</a>
-    </div>
-      <div class="collapse navbar-collapse" id="menu-navbar">
-        <ul class="nav navbar-nav">
-          <li><a href="student_administration.jsp">Student Administration</a></li>
-          <li><a href="asset_administration.jsp">Asset Administration</a></li>
-          <li><a href="announcement.jsp">Announcement</a><li>
-          <li><a href="references.jsp">References</a></li>
-          <li><a href="schedules.jsp">Schedules</a></li>
-
-                    <!-- 권한에 따른 메뉴 분리-->
-          <%
-            String levelCheck = (String)session.getAttribute("level");
-
-          	if(levelCheck.equals("Administrator")){
-          %>
-                    <li><a href="local_manager.jsp">Local Managers</a></li>
-                    <li><a href="menu_manage.jsp">Menu Management</a></li>
-          <% } %>
-
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-          <li><a href="nav.jsp"><span class="glyphicon glyphicon-home"></span>Home</a></li>
-          <li><a href="logout.jsp"><span class="glyphicon glyphicon-log-out"></span>Sign Out</a></li>
-        </ul>
-      </div>
-  </div>
-</nav>
-
+		<jsp:include page="/view/nav.jsp" flush="false" />
     <!-- Navigation 끝 -->
 
   <div class="container">
@@ -107,7 +73,8 @@ if(rs.next())
 
     <h2>Modify Student Information</h2>
     <p>
-    <form method="post" action="stu_db_modify.jsp?idx=<%=idx%>">
+    <form method="post" action="/Project/StudentDB?idx=<%=idx%>">
+    	<input type="hidden" name="mode" value="modify" />
       <table class="table table-bordered small">
         <tr>
           <th class="success">No.</th>
@@ -153,7 +120,7 @@ if(rs.next())
         <tr>
           <th class="success">Location</th>
            <td>
-            <select name="location" size = "5">
+            <select name="location" class="form-control">
               <option <%if(location.equals("Location 1")){out.print("selected");}%>>Location 1</option>
               <option <%if(location.equals("Location 2")){out.print("selected");}%>="location 2">Location 2</option>
               <option <%if(location.equals("Location 3")){out.print("selected");}%>="location 3">Location 3</option>

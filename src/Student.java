@@ -12,6 +12,10 @@ public class Student {
 	private int total_student;
 	private int last_idx;
 	
+	Connection conn = null;
+	Statement stat = null;
+	ResultSet rs = null;
+	
 	public ResultSet studentList() {
 		
 		String db_url="jdbc:mysql://dbinstance.cmpfvsw5d4kz.ap-northeast-1.rds.amazonaws.com:3306/test";
@@ -20,11 +24,11 @@ public class Student {
 	
 		int total_student=0;  // 총 학생 수 구할 때, 사용 할 변수
 		int last_idx=0; // 마지막 학번 저장
-	
+	/*
 		Connection conn = null;
 		Statement stat = null;
 		ResultSet rs = null;
-		
+		*/
 		try{
 			Class.forName("com.mysql.jdbc.Driver");
 			conn=DriverManager.getConnection(db_url,db_user,db_pwd);

@@ -45,8 +45,8 @@
 
     <h2>Add Student Information</h2>
     <p>
-    <form method="post" action="/Project/StudentDBAdd">
-
+    <form method="post" action="/Project/StudentDB">
+		<input type="hidden" name="mode" value="add" />
       <table class="table table-bordered small">
         <tr>
 	        <th class="success">Name</th>

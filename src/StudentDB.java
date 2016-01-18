@@ -12,14 +12,14 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class StudentDBAdd
  */
-@WebServlet("/StudentDBAdd")
-public class StudentDBAdd extends HttpServlet {
+@WebServlet("/StudentDB")
+public class StudentDB extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public StudentDBAdd() {
+    public StudentDB() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -41,11 +41,13 @@ public class StudentDBAdd extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 	  	response.setContentType("utf-8");
 	  	
+	  	String idx = request.getParameter("idx");
 		String name = request.getParameter("name");
 		String gender = request.getParameter("gender");
 		String address = request.getParameter("address");
 		String e_mail = request.getParameter("e_mail");
 		String location = request.getParameter("location");
+		String mode = request.getParameter("mode");
 	
 		String db_url="jdbc:mysql://dbinstance.cmpfvsw5d4kz.ap-northeast-1.rds.amazonaws.com:3306/test";
 		String db_user="admin";
@@ -61,15 +63,37 @@ public class StudentDBAdd extends HttpServlet {
 				throw new Exception("DB 연결 Error");
 				
 			stat = conn.createStatement();
-		
-			String query = String.format("insert into student(name,gender,address,e_mail,location) values('%s', '%s', '%s', '%s', '%s');",name,gender,address,e_mail,location);
-			int rowNum = stat.executeUpdate(query);
-			if(rowNum <1)
-				throw new Exception("DB 데이터를 수정하는데 실패하였습니다.");
-			else
-				response.sendRedirect("/Project/student");
+			
+			if (mode.equals("add")) {
+				String query = String.format("insert into student(name,gender,address,e_mail,location) values('%s', '%s', '%s', '%s', '%s');",name,gender,address,e_mail,location);
+				try{
+					int rowNum = stat.executeUpdate(query);
+					if(rowNum <1)
+						throw new Exception("DB 데이터를 수정하는데 실패하였습니다.");
+					else
+						response.sendRedirect("/Project/student");
+				} catch(SQLException e) {
+					e.printStackTrace();
+				}
+			} // if add
+			
+			if (mode.equals("modify")) {
+				String query = String.format("UPDATE student set name := '%s', gender := '%s', address := '%s', e_mail := '%s', location := '%s' where s_no = %s;",name,gender,address,e_mail,location,idx);
+				try{
+					int rowNum = stat.executeUpdate(query);
+
+					if(rowNum <1)
+						throw new Exception("DB 데이터를 수정하는 데 실패하였습니다.");
+					else
+						response.sendRedirect("/Project/student");
+				} catch(SQLException e) {
+					e.printStackTrace();
+				}
+				
+			} // if modify
+			
 		}catch(Exception e)	{ 
-			//throw new Exception(e);
+			e.printStackTrace();
 		}
 		
 	}

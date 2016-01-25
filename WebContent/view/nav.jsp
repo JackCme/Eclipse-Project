@@ -13,7 +13,7 @@
 		      <div class="collapse navbar-collapse" id="menu-navbar">
 		        <ul class="nav navbar-nav">
 		          <li><a href="/Project/student">Student Administration</a></li>
-		          <li><a href="asset_administration.jsp">Asset Administration</a></li>
+		          <li><a href="/Project/asset">Asset Administration</a></li>
 		          <li><a href="announcement.jsp">Announcement</a><li>
 		          <li><a href="references.jsp">References</a></li>
 		          <li><a href="schedules.jsp">Schedules</a></li>

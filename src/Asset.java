@@ -1,28 +1,28 @@
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
-import java.sql.*;
-
-public class Student {
-	private int s_id;
-	private String name;
-	private char gender; 
-	private String address;
-	private Date birth;
-	private String e_mail;
+public class Asset {
+	private int a_no;
+	private String serial_no;
+	private String asset_name;
 	private String location;
-	private int total_student;
+	private int m_no;
+	private int total_asset;
 	private int last_idx;
 	
 	Connection conn = null;
 	Statement stat = null;
 	ResultSet rs = null;
 	
-	public ResultSet studentList() {
+	public ResultSet assetList() {
 		
 		String db_url="jdbc:mysql://dbinstance.cmpfvsw5d4kz.ap-northeast-1.rds.amazonaws.com:3306/test";
 		String db_user="admin";
 		String db_pwd="dbadministrator";
 	
-		int total_student=0;  // 총 학생 수 구할 때, 사용 할 변수
+		int total_asset=0;  // 총 학생 수 구할 때, 사용 할 변수
 		int last_idx=0; // 마지막 학번 저장
 
 		try{
@@ -33,21 +33,26 @@ public class Student {
 			
 			stat = conn.createStatement();
 	
-			String query = "select count(*) from student";
+			String query = "select a_no, sn, asset.name as asset_name, location, member.name as manager_name "
+					+ "from asset left join member "
+					+ "on asset.m_no = member.m_no";
+			
 			rs = stat.executeQuery(query);
+			/*
 			if(rs.next())
-			    total_student = rs.getInt(1); // 학생 수를 저장.
-			this.total_student = total_student;
-		
+			    total_asset = rs.getInt(1); // 학생 수를 저장.
+			this.total_asset = total_asset;
+			*/
+		/*
 			query = "select max(s_no) from student";
 			rs = stat.executeQuery(query);
 			if(rs.next())
 			    last_idx = rs.getInt(1); // 마지막 학번을 저장.
 			this.last_idx = last_idx; 
-		
-			query = "select lpad(s_no,5,0) as s_id ,name,gender,address,birth,e_mail,location from student"; // 학생 정보 얻어오기위한 쿼리 저장
+		*/
+			//query = "select lpad(s_no,5,0) as s_id ,name,gender,address,birth,e_mail,location from student"; // 학생 정보 얻어오기위한 쿼리 저장
 			//query = "SELECT * FROM student";
-			rs = stat.executeQuery(query);
+			//rs = stat.executeQuery(query);
 			
 			return rs;
 
@@ -59,8 +64,8 @@ public class Student {
 		
 	}
 	
-	public int getTotalStudent() {
-		return this.total_student;
+	public int getTotalAsset() {
+		return this.total_asset;
 	}
 	
 	public int getLastIdx() {

@@ -29,7 +29,7 @@
 			
 			boolean login = (memberId == null) ? false : true;
 			if(!login) {
-			  response.sendRedirect("login.jsp");
+			  response.sendRedirect("/Project/login.jsp");
 			}
 			else {
 		%>

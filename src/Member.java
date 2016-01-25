@@ -64,18 +64,8 @@ public class Member {
 			e.printStackTrace();
 		}
 		finally{
-			try{
-				stat.close();
-			}
-			catch(Exception e){
-				e.printStackTrace();//throw new Exception("stat.close() Error");
-			}
-			try{
-			conn.close();
-			}
-			catch(Exception e){
-				e.printStackTrace();//throw new Exception("conn.close() Error");
-			}
+			if (stat != null) try{	stat.close(); }	catch(Exception e){	e.printStackTrace();}
+			if (conn != null) try{ conn.close();} catch(Exception e){ e.printStackTrace(); }
 		}
 		
 		return false;

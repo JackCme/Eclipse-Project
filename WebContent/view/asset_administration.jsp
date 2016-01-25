@@ -81,7 +81,7 @@
   	if((int)request.getAttribute("total_asset") == 0){
 %>
             <tr>
-              <td colspan="7">학생 정보가 존재하지 않습니다.</td>
+              <td colspan="7">자산 정보가 존재하지 않습니다.</td>
             </tr>
 <%
   	}else{

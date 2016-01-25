@@ -3,6 +3,8 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
+import com.mysql.jdbc.PreparedStatement;
+
 public class Asset {
 	private int a_no;
 	private String serial_no;
@@ -15,6 +17,7 @@ public class Asset {
 	Connection conn = null;
 	Statement stat = null;
 	ResultSet rs = null;
+	PreparedStatement pstmt = null;
 	
 	public ResultSet assetList() {
 		
@@ -33,26 +36,19 @@ public class Asset {
 			
 			stat = conn.createStatement();
 	
-			String query = "select a_no, sn, asset.name as asset_name, location, member.name as manager_name "
-					+ "from asset left join member "
-					+ "on asset.m_no = member.m_no";
-			
+			String query = "select count(*) from asset";
 			rs = stat.executeQuery(query);
-			/*
 			if(rs.next())
 			    total_asset = rs.getInt(1); // 학생 수를 저장.
 			this.total_asset = total_asset;
-			*/
-		/*
-			query = "select max(s_no) from student";
-			rs = stat.executeQuery(query);
-			if(rs.next())
-			    last_idx = rs.getInt(1); // 마지막 학번을 저장.
-			this.last_idx = last_idx; 
-		*/
-			//query = "select lpad(s_no,5,0) as s_id ,name,gender,address,birth,e_mail,location from student"; // 학생 정보 얻어오기위한 쿼리 저장
-			//query = "SELECT * FROM student";
-			//rs = stat.executeQuery(query);
+			
+			query = "select a_no, sn, asset.name as asset_name, location, member.name as manager_name "
+					+ "from asset left join member "
+					+ "on asset.m_no = member.m_no";
+			
+			pstmt = (PreparedStatement) conn.prepareStatement(query);
+			
+			rs = pstmt.executeQuery();
 			
 			return rs;
 

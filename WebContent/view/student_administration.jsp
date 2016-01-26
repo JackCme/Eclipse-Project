@@ -117,7 +117,7 @@
 		</div>
         
         </div>
-        <a href="/Project/view/student_add.jsp"><button type="button" class="btn btn-default">Add</button></a>
+        <a href="/Project/student/add"><button type="button" class="btn btn-default">Add</button></a>
       </div>
 
 

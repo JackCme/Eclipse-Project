@@ -85,10 +85,6 @@ if(!login) {
     <form method="post" action="/Project/student?idx=<%=idx%>">
     	<input type="hidden" name="mode" value="modify" />
       <table class="table table-bordered small">
-        <!-- <tr>
-          <th class="success">No.</th>
-          <td><%=idx%></td>
-        </tr> -->
         <tr>
         	<th class="success">Serial No.</th>
 	        <td>
@@ -154,7 +150,8 @@ if(!login) {
 		conn.close();
 	}catch(SQLException e)	{
 	  e.printStackTrace();
-	} %>
+	} 
+%>
 
 
 </html>

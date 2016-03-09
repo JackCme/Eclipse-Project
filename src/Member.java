@@ -26,6 +26,8 @@ public class Member {
 		
 		Connection conn = null; // DB연결을 위한 변수
 		Statement stat = null; // DB쿼리를 위한 변수
+		
+		boolean _isMember = false;
 		String db_user = "admin";
 		String db_pass = "dbadministrator";
 		String db_url = "jdbc:mysql://dbinstance.cmpfvsw5d4kz.ap-northeast-1.rds.amazonaws.com:3306/test";
@@ -56,7 +58,7 @@ public class Member {
 					this.name = db_name;
 					this.level = db_level;
 					
-					return true;
+					_isMember = true;
 				}
 			}
 		}
@@ -68,7 +70,7 @@ public class Member {
 			if (conn != null) try{ conn.close();} catch(Exception e){ e.printStackTrace(); }
 		}
 		
-		return false;
+		return _isMember;
 	}
 
 }
